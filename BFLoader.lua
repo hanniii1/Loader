@@ -15,6 +15,14 @@ local routes = {
         name = "Anime Overload",
         url = "https://api.luarmor.net/files/v4/loaders/e6153c73e2d96eb2d2d95cc9eb9bd94b.lua",
     },
+    [80353351682367] = {
+        name = "Anime Overload",
+        url = "https://api.luarmor.net/files/v4/loaders/e6153c73e2d96eb2d2d95cc9eb9bd94b.lua",
+    },
+    [126297188712308] = {
+        name = "Anime Overload",
+        url = "https://api.luarmor.net/files/v4/loaders/e6153c73e2d96eb2d2d95cc9eb9bd94b.lua",
+    },
 }
 local route = routes[game.PlaceId]
 if not route then
@@ -32,7 +40,6 @@ local ok, source = pcall(function()
     return game:HttpGet(route.url)
 end)
 if not ok or not source then
-    warn("[BigFroot Loader] Failed to fetch " .. route.name)
     state.loaded[route.name] = nil
     return
 end
@@ -40,6 +47,5 @@ local runOk, err = pcall(function()
     loadstring(source)()
 end)
 if not runOk then
-    warn("[BigFroot Loader] Failed to run " .. route.name .. ": " .. tostring(err))
     state.loaded[route.name] = nil
 end
