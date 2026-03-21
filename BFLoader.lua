@@ -11,6 +11,10 @@ local routes = {
         name = "Garden Horizons",
         url = "https://api.luarmor.net/files/v4/loaders/069acf492628081651416f39de947b77.lua",
     },
+    [126297188712308] = {
+        name = "Anime Overload",
+        url = "https://api.luarmor.net/files/v4/loaders/e6153c73e2d96eb2d2d95cc9eb9bd94b.lua",
+    },
 }
 local route = routes[game.PlaceId]
 if not route then
