@@ -1,5 +1,49 @@
-if not game:IsLoaded() then game.Loaded:Wait() end
+if not game:IsLoaded() then
+    game.Loaded:Wait()
+end
+
 task.wait(math.random())
+
+local function trim(v)
+    return tostring(v or ""):match("^%s*(.-)%s*$") or ""
+end
+
+local function envOf(fn, ...)
+    if type(fn) ~= "function" then
+        return nil
+    end
+    local ok, env = pcall(fn, ...)
+    return ok and type(env) == "table" and env or nil
+end
+
+local genv = envOf(getgenv)
+local cenv = envOf(getfenv, 1)
+
+local function pick(...)
+    for _, key in ipairs({...}) do
+        if cenv and cenv[key] ~= nil then
+            return cenv[key]
+        end
+        if rawget(_G, key) ~= nil then
+            return rawget(_G, key)
+        end
+        if genv and genv[key] ~= nil then
+            return genv[key]
+        end
+    end
+end
+
+local function setKey(key)
+    key = trim(key)
+    if key == "" then
+        return
+    end
+    script_key, SCRIPT_KEY = key, key
+    _G.script_key, _G.SCRIPT_KEY = key, key
+    if genv then
+        genv.script_key, genv.SCRIPT_KEY = key, key
+    end
+end
 
 local routes = {
     [114640202062357] = { "Swing Obby For Brainrots", "https://api.luarmor.net/files/v4/loaders/99d5f951b48d089c55f94310cce9276e.lua" },
@@ -11,19 +55,33 @@ local routes = {
 }
 
 local route = routes[game.PlaceId]
-if not route then return end
-
-local state = getgenv().BigFrootLoaderState or { loaded = {} }
-getgenv().BigFrootLoaderState = state
-
-local name, url = route[1], route[2]
-if state.loaded[name] then return end
-state.loaded[name] = true
-
-local ok, src = pcall(game.HttpGet, game, url)
-if ok and src then
-    local ran = pcall(loadstring(src))
-    if ran then return end
+if not route then
+    return
 end
 
-state.loaded[name] = nil
+setKey(pick("script_key", "SCRIPT_KEY"))
+
+local scriptId = route[2]:match("/loaders/([%w]+)%.lua")
+if scriptId then
+    _G.LUARMOR_SCRIPT_ID, _G.BIGFROOT_LUARMOR_SCRIPT_ID = scriptId, scriptId
+    if genv then
+        genv.LUARMOR_SCRIPT_ID, genv.BIGFROOT_LUARMOR_SCRIPT_ID = scriptId, scriptId
+    end
+end
+
+local state = (genv and genv.BigFrootLoaderState) or { loaded = {} }
+if genv then
+    genv.BigFrootLoaderState = state
+end
+
+if state.loaded[route[1]] then
+    return
+end
+state.loaded[route[1]] = true
+
+local ok, src = pcall(game.HttpGet, game, route[2])
+if ok and src and pcall(loadstring(src)) then
+    return
+end
+
+state.loaded[route[1]] = nil
