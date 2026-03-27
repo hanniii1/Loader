@@ -54,6 +54,7 @@ local routes = {
     [97365843755210] = { "Cut Grass For Brainrots", "https://api.luarmor.net/files/v4/loaders/52f46b7e492243b23953d2c7611e1c44.lua" },
     [124473577469410] = { "Be a Lucky Block", "https://api.luarmor.net/files/v4/loaders/eb83fa1cc2d982f694566e45ad865313.lua" },
     [82397737462020] = { "Shrink for Brainrot", "https://api.luarmor.net/files/v4/loaders/3a4dea3e62ef5f49d0301fcadcb796e5.lua" },
+    [77393318863643] = { "Aura Ascension Ahh game", "https://api.jnkie.com/api/v1/luascripts/public/6a5f9cea79d13310ce5e282d6b13a4ea81c63b565a488719070775678cffc6a2/download" },
 }
 
 local route = routes[game.PlaceId]
