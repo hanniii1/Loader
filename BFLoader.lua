@@ -41,7 +41,7 @@ end
 local routes = {
     [114640202062357] = { "Swing Obby For Brainrots", "https://api.luarmor.net/files/v4/loaders/99d5f951b48d089c55f94310cce9276e.lua" },
     [130594398886540] = { "Garden Horizons", "https://api.luarmor.net/files/v4/loaders/069acf492628081651416f39de947b77.lua" },
-    [7856269159] = { "Anime Overload", "https://api.luarmor.net/files/v4/loaders/e6153c73e2d96eb2d2d95cc9eb9bd94b.lua" },
+    [7856269159] = { "Anime Overload", "https://api.jnkie.com/api/v1/luascripts/public/2daf9930ca5afb702905a1208dd4ccdcef5d1300670026e525975dfacada749d/download" },
     [97365843755210] = { "Cut Grass For Brainrots", "https://api.luarmor.net/files/v4/loaders/52f46b7e492243b23953d2c7611e1c44.lua" },
     [124473577469410] = { "Be a Lucky Block", "https://api.luarmor.net/files/v4/loaders/eb83fa1cc2d982f694566e45ad865313.lua" },
     [82397737462020] = { "Shrink for Brainrot", "https://api.luarmor.net/files/v4/loaders/3a4dea3e62ef5f49d0301fcadcb796e5.lua" },
