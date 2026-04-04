@@ -47,6 +47,7 @@ local routes = {
     [82397737462020] = { "Shrink for Brainrot", "https://api.luarmor.net/files/v4/loaders/3a4dea3e62ef5f49d0301fcadcb796e5.lua" },
     [7798947148] = { "Anime Final Quest", "https://api.luarmor.net/files/v4/loaders/992facee57df35654157a7d040aa16fd.lua" },
     [77393318863643] = { "Aura Ascension Ahh game", "https://api.jnkie.com/api/v1/luascripts/public/6a5f9cea79d13310ce5e282d6b13a4ea81c63b565a488719070775678cffc6a2/download" },
+    [105626692504093] = { "Be a Brainrot", "https://api.luarmor.net/files/v4/loaders/2467a31cffe47ea62651b0f9197a8100.lua" },
 }
 local route = routes[game.PlaceId] or routes[game.GameId]
 if not route then
