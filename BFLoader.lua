@@ -72,6 +72,7 @@
         config_flags = {},
         connections = {},   
         notifications = {notifs = {}},
+        notification_serial = 0,
         current_open;
         object_id = 0;
     }
@@ -4042,16 +4043,49 @@
     --
 
     -- Notification Library
-        function notifications:refresh_notifs() 
-            local offset = 50
+        function notifications:get_entries()
+            local entries = {}
 
-            for i, v in notifications.notifs do
-                local Position = vec2(20, offset)
-                library:tween(v, {Position = dim_offset(Position.X, Position.Y)}, Enum.EasingStyle.Quad, 0.4)
-                offset += (v.AbsoluteSize.Y + 10)
+            for index, frame in notifications.notifs do
+                if frame and frame.Parent then
+                    entries[#entries + 1] = {
+                        index = index,
+                        frame = frame
+                    }
+                end
             end
 
-            return offset
+            table.sort(entries, function(a, b)
+                return a.index > b.index
+            end)
+
+            return entries
+        end
+
+        function notifications:refresh_notifs(instant)
+            local current_camera = ws.CurrentCamera or camera
+            local viewport = current_camera and current_camera.ViewportSize or vec2(1280, 720)
+            local margin_x = 16
+            local margin_y = 16
+            local spacing = 10
+            local offset_y = viewport.Y - margin_y
+
+            for _, entry in notifications:get_entries() do
+                local frame = entry.frame
+                local height = frame.AbsoluteSize.Y > 0 and frame.AbsoluteSize.Y or frame.Size.Y.Offset
+                offset_y -= height
+
+                local position = dim_offset(viewport.X - margin_x, max(margin_y, offset_y))
+                if instant then
+                    frame.Position = position
+                else
+                    library:tween(frame, {Position = position}, Enum.EasingStyle.Quad, 0.4)
+                end
+
+                offset_y -= spacing
+            end
+
+            return offset_y
         end
         
         function notifications:fade(path, is_fading)
@@ -4171,26 +4205,20 @@
                 });
             end
             
-            local index = #notifications.notifs + 1
+            library.notification_serial += 1
+            local index = library.notification_serial
             notifications.notifs[index] = items[ "notification" ]
 
+            notifications:refresh_notifs(true)
             notifications:fade(items[ "notification" ], false)
-            
-            local offset = notifications:refresh_notifs()
-
-            items[ "notification" ].Position = dim_offset(20, offset)
-
-            library:tween(items[ "notification" ], {AnchorPoint = vec2(0, 0)}, Enum.EasingStyle.Quad, 1)
             library:tween(items[ "bar" ], {Size = dim2(1, -8, 0, 5)}, Enum.EasingStyle.Quad, cfg.lifetime)
 
             task.spawn(function()
                 task.wait(cfg.lifetime)
                 
                 notifications.notifs[index] = nil
-                
+                notifications:refresh_notifs()
                 notifications:fade(items[ "notification" ], true)
-                
-                library:tween(items[ "notification" ], {AnchorPoint = vec2(1, 0)}, Enum.EasingStyle.Quad, 1)
 
                 task.wait(1)
         
