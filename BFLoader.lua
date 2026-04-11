@@ -49,6 +49,7 @@ local routes = {
     [77393318863643] = { "Aura Ascension Ahh game", "https://api.jnkie.com/api/v1/luascripts/public/6a5f9cea79d13310ce5e282d6b13a4ea81c63b565a488719070775678cffc6a2/download" },
     [105626692504093] = { "Be a Brainrot", "https://api.luarmor.net/files/v4/loaders/2467a31cffe47ea62651b0f9197a8100.lua" },
     [112259901434347] = { "+1 Speed be a Lucky Block!", "https://api.luarmor.net/files/v4/loaders/d0f4c13d54d518c47c4e06d2fe8ba534.lua"},
+    [9802644580] = { "Summon Heroes", "https://api.luarmor.net/files/v4/loaders/4736e7dbf7040c8cbf738f5a7c465f88.lua"} ,
 }
 local route = routes[game.PlaceId] or routes[game.GameId]
 if not route then
