@@ -56,6 +56,7 @@ local routes = {
     [8966502575] = { "Anime Reversal", "https://api.luarmor.net/files/v4/loaders/c95fc83170e2c97e0a06c6d6f23e74a6.lua"},
     [10032271327] = { "Anime World Fighters", "https://api.luarmor.net/files/v4/loaders/87e72a93771433a6438c356156ad2ed0.lua"},
     [138064211947107] = { "Unbox a Car", "https://api.luarmor.net/files/v4/loaders/a974d391286695dcf54c134194860bee.lua" },
+    [9610561918] = { "Knife Farm", "https://api.luarmor.net/files/v4/loaders/ad5cca7cb4a373b3f12a55e1a974247e.lua" },
 
 }
 local route = routes[game.PlaceId] or routes[game.GameId]
