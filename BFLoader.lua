@@ -62,6 +62,7 @@ local routes = {
     [6409513651] = { "Anime Warrior III", "https://api.luarmor.net/files/v4/loaders/7c5ad6d6d9907dc52339b6992c69929f.lua"},
     [10039338037] = { "Build A Ring Farm", "https://api.luarmor.net/files/v4/loaders/0c4926532de4a165261afd5cdef461e8.lua"},
     [9348272796] = { "SZA", "https://api.luarmor.net/files/v4/loaders/d3544bfeec41edddd5cc82b4719bebae.lua"},
+    [7585079192] = { "Anime Story 2", "https://api.luarmor.net/files/v4/loaders/156058325b61d2eacbcafe87692a3044.lua"},
 }
 local route = routes[game.PlaceId] or routes[game.GameId]
 if not route then
