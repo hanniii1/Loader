@@ -16,8 +16,8 @@ local KeySystem = {
         Panel = Color3.fromRGB(18, 20, 18),
         Element = Color3.fromRGB(32, 36, 32),
         HoveredElement = Color3.fromRGB(42, 45, 39),
-        Accent = Color3.fromRGB(255, 140, 0),
-        AccentHover = Color3.fromRGB(255, 164, 42),
+        Accent = Color3.fromRGB(242, 132, 0),
+        AccentHover = Color3.fromRGB(255, 150, 26),
         Text = Color3.fromRGB(238, 241, 236),
         MutedText = Color3.fromRGB(146, 150, 142),
         Outline = Color3.fromRGB(66, 69, 60),
@@ -285,7 +285,7 @@ function KeySystem:Prompt(options)
 
     local theme = self.Theme
     local isMobile = UserInputService.TouchEnabled == true
-    local panelHeight = isMobile and 232 or 220
+    local panelHeight = isMobile and 214 or 204
     local panelWidth = isMobile and 0.92 or 0.86
     local panelPadding = isMobile and 14 or 16
 
@@ -376,17 +376,9 @@ function KeySystem:Prompt(options)
         Parent = content,
     })
 
-    self:Create("UIListLayout", {
-        FillDirection = Enum.FillDirection.Vertical,
-        HorizontalAlignment = Enum.HorizontalAlignment.Center,
-        Padding = UDim.new(0, 7),
-        SortOrder = Enum.SortOrder.LayoutOrder,
-        Parent = content,
-    })
-
     local header = self:Create("Frame", {
         BackgroundTransparency = 1,
-        LayoutOrder = 1,
+        Position = UDim2.fromOffset(0, 0),
         Size = UDim2.new(1, 0, 0, 44),
         Parent = content,
     })
@@ -436,7 +428,7 @@ function KeySystem:Prompt(options)
         RichText = true,
         Text = options.Title or '<font color="rgb(255, 140, 0)">Big</font>Froot Key System',
         TextColor3 = theme.Text,
-        TextSize = 22,
+        TextSize = 19,
         TextXAlignment = Enum.TextXAlignment.Left,
         TextTruncate = Enum.TextTruncate.AtEnd,
         Parent = header,
@@ -449,7 +441,7 @@ function KeySystem:Prompt(options)
         Font = Enum.Font.GothamMedium,
         Text = options.Subtitle or "Luarmor Access",
         TextColor3 = theme.MutedText,
-        TextSize = 14,
+        TextSize = 12,
         TextXAlignment = Enum.TextXAlignment.Left,
         TextTruncate = Enum.TextTruncate.AtEnd,
         Parent = header,
@@ -457,19 +449,19 @@ function KeySystem:Prompt(options)
 
     local statusHolder = self:Create("Frame", {
         BackgroundTransparency = 1,
-        LayoutOrder = 2,
-        Size = UDim2.new(1, 0, 0, 18),
+        Position = UDim2.fromOffset(0, 50),
+        Size = UDim2.new(1, 0, 0, 17),
         Parent = content,
     })
 
     local status = self:Create("TextLabel", {
         BackgroundTransparency = 1,
-        Position = UDim2.fromOffset(12, 0),
-        Size = UDim2.new(1, -24, 1, 0),
+        Position = UDim2.fromOffset(0, 0),
+        Size = UDim2.new(1, 0, 1, 0),
         Font = Enum.Font.Gotham,
         Text = options.Status or "Enter your Luarmor key to continue.",
         TextColor3 = theme.MutedText,
-        TextSize = 14,
+        TextSize = 10,
         TextWrapped = true,
         TextXAlignment = Enum.TextXAlignment.Left,
         TextYAlignment = Enum.TextYAlignment.Center,
@@ -478,7 +470,7 @@ function KeySystem:Prompt(options)
     prompt.Items.Status = status
 
     local inputFrame = self:Create("Frame", {
-        LayoutOrder = 3,
+        Position = UDim2.fromOffset(0, 74),
         Size = UDim2.new(1, 0, 0, 40),
         BackgroundColor3 = theme.Element,
         BackgroundTransparency = 0.04,
@@ -517,7 +509,7 @@ function KeySystem:Prompt(options)
 
     local buttonRow = self:Create("Frame", {
         BackgroundTransparency = 1,
-        LayoutOrder = 4,
+        Position = UDim2.fromOffset(0, 130),
         Size = UDim2.new(1, 0, 0, 40),
         Parent = content,
     })
@@ -581,8 +573,6 @@ function KeySystem:Prompt(options)
         Parent = submit,
     })
 
-    self:MakeGlass(panel, prompt)
-
     function prompt:SetStatus(message, color)
         status.Text = tostring(message or "")
         status.TextColor3 = color or theme.MutedText
@@ -616,9 +606,6 @@ function KeySystem:Prompt(options)
             self.Library:Tween(overlay, {BackgroundTransparency = 1})
             self.Library:Tween(stroke, {Transparency = 1})
             self.Library:Tween(shadow, {ImageTransparency = 1})
-            if self.Items.BlurEffect then
-                self.Library:Tween(self.Items.BlurEffect, {NearIntensity = 0})
-            end
         end)
 
         task.delay(0.24, function()
@@ -738,11 +725,11 @@ function KeySystem:Prompt(options)
     self.ActivePrompt = prompt
 
     task.defer(function()
-        self:Tween(overlay, {BackgroundTransparency = 0.3})
-        self:Tween(panel, {Position = UDim2.new(0.5, 0, 0.5, 0), BackgroundTransparency = 0.15})
+        self:Tween(overlay, {BackgroundTransparency = 0.38})
+        self:Tween(panel, {Position = UDim2.new(0.5, 0, 0.5, 0), BackgroundTransparency = 0})
         self:Tween(scale, {Scale = 1})
-        self:Tween(stroke, {Transparency = 0.2})
-        self:Tween(shadow, {ImageTransparency = 0.58})
+        self:Tween(stroke, {Transparency = 0.15})
+        self:Tween(shadow, {ImageTransparency = 0.5})
     end)
 
     return prompt
