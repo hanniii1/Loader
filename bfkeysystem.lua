@@ -1,4 +1,4 @@
--- uh hi
+-- Big Froot key prompt UI library
 local SharedEnv = type(getgenv) == "function" and getgenv() or _G
 
 local Players = game:GetService("Players")
@@ -285,7 +285,7 @@ function KeySystem:Prompt(options)
 
     local theme = self.Theme
     local isMobile = UserInputService.TouchEnabled == true
-    local panelHeight = isMobile and 238 or 226
+    local panelHeight = isMobile and 232 or 220
     local panelWidth = isMobile and 0.92 or 0.86
     local panelPadding = isMobile and 14 or 16
 
@@ -340,7 +340,7 @@ function KeySystem:Prompt(options)
         ImageTransparency = 1,
         Position = UDim2.new(0.5, 0, 0.5, 0),
         ScaleType = Enum.ScaleType.Slice,
-        Size = UDim2.new(1, 22, 1, 22),
+        Size = UDim2.new(1, 30, 1, 30),
         SliceCenter = Rect.new(Vector2.new(21, 21), Vector2.new(79, 79)),
         ZIndex = panel.ZIndex - 1,
         Parent = panel,
@@ -348,7 +348,7 @@ function KeySystem:Prompt(options)
     prompt.Items.Shadow = shadow
 
     local stroke = self:Create("UIStroke", {
-        Color = theme.WarmOutline,
+        Color = theme.Accent,
         Thickness = 1,
         Transparency = 1,
         Parent = panel,
@@ -379,7 +379,7 @@ function KeySystem:Prompt(options)
     self:Create("UIListLayout", {
         FillDirection = Enum.FillDirection.Vertical,
         HorizontalAlignment = Enum.HorizontalAlignment.Center,
-        Padding = UDim.new(0, 10),
+        Padding = UDim.new(0, 7),
         SortOrder = Enum.SortOrder.LayoutOrder,
         Parent = content,
     })
@@ -455,18 +455,25 @@ function KeySystem:Prompt(options)
         Parent = header,
     })
 
-    local status = self:Create("TextLabel", {
+    local statusHolder = self:Create("Frame", {
         BackgroundTransparency = 1,
         LayoutOrder = 2,
-        Size = UDim2.new(1, -24, 0, 22),
+        Size = UDim2.new(1, 0, 0, 18),
+        Parent = content,
+    })
+
+    local status = self:Create("TextLabel", {
+        BackgroundTransparency = 1,
+        Position = UDim2.fromOffset(12, 0),
+        Size = UDim2.new(1, -24, 1, 0),
         Font = Enum.Font.Gotham,
         Text = options.Status or "Enter your Luarmor key to continue.",
         TextColor3 = theme.MutedText,
         TextSize = 14,
         TextWrapped = true,
         TextXAlignment = Enum.TextXAlignment.Left,
-        TextYAlignment = Enum.TextYAlignment.Top,
-        Parent = content,
+        TextYAlignment = Enum.TextYAlignment.Center,
+        Parent = statusHolder,
     })
     prompt.Items.Status = status
 
@@ -607,7 +614,7 @@ function KeySystem:Prompt(options)
             self.Library:Tween(scale, {Scale = 0.975})
             self.Library:Tween(panel, {Position = UDim2.new(0.5, 0, 0.5, 12), BackgroundTransparency = 1})
             self.Library:Tween(overlay, {BackgroundTransparency = 1})
-        self.Library:Tween(stroke, {Transparency = 1})
+            self.Library:Tween(stroke, {Transparency = 1})
             self.Library:Tween(shadow, {ImageTransparency = 1})
             if self.Items.BlurEffect then
                 self.Library:Tween(self.Items.BlurEffect, {NearIntensity = 0})
@@ -731,11 +738,11 @@ function KeySystem:Prompt(options)
     self.ActivePrompt = prompt
 
     task.defer(function()
-        self:Tween(overlay, {BackgroundTransparency = 0.26})
-        self:Tween(panel, {Position = UDim2.new(0.5, 0, 0.5, 0), BackgroundTransparency = 0.08})
+        self:Tween(overlay, {BackgroundTransparency = 0.3})
+        self:Tween(panel, {Position = UDim2.new(0.5, 0, 0.5, 0), BackgroundTransparency = 0.15})
         self:Tween(scale, {Scale = 1})
-        self:Tween(stroke, {Transparency = 0.32})
-        self:Tween(shadow, {ImageTransparency = 0.72})
+        self:Tween(stroke, {Transparency = 0.2})
+        self:Tween(shadow, {ImageTransparency = 0.58})
     end)
 
     return prompt
