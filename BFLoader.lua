@@ -67,11 +67,12 @@ local routes = {
     [10093833731] = { "Broken Blade", "https://api.luarmor.net/files/v4/loaders/5c76434a4aa3e7d8622e184fa1d6e41d.lua"},
     [10148434559] = { "Lucky Block Rush", "https://api.luarmor.net/files/v4/loaders/e699fbd6839cb21f99b02581984e0a26.lua"},
     [10168229420] = { "My Gaming Cafe", "https://api.luarmor.net/files/v4/loaders/3cfc9a4071ec2b161c47af08d8aebe7f.lua"},
-    [9797806474] = { "Anime Astral", "https://api.luarmor.net/files/v4/loaders/7b467e6a99e8940a14f8638da5114d52.lua"},
+    [102072869879193] = { "Anime Astral", "https://api.luarmor.net/files/v4/loaders/7b467e6a99e8940a14f8638da5114d52.lua"},
     [8356066619] = { "Anime Squadron", "https://api.luarmor.net/files/v4/loaders/96c0cb77113aab1b03c99efd25e8b0a9.lua"},
     [10200395747] = { "Grow a Garden 2", "https://api.luarmor.net/files/v4/loaders/06c27f35842892f540c47c5b829cde13.lua"},
     [9826885587] = { "Evomon", "https://api.luarmor.net/files/v4/loaders/1840c1cc0b9aa949a220c8527299cc3b.lua"},
     [10204207151] = { "Catch a Brainrot", "https://api.luarmor.net/files/v4/loaders/c9199c243c613cae48ca8a4299d3cbf7.lua"},
+    [7613921865] = { "Anime Expedition", "https://api.luarmor.net/files/v4/loaders/e83ca399ed2633554a17157256aa1585.lua"},
 }
 local route = routes[game.PlaceId] or routes[game.GameId]
 if not route then
