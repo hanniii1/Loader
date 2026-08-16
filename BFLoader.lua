@@ -76,7 +76,7 @@ local routes = {
     [10131390815] = { "Throw a Coin", "https://api.luarmor.net/files/v4/loaders/a12724e45b05d6690e5f90dc8af3b04f.lua"},
     [8841437826] = { "Capybara vs Plants", "https://api.luarmor.net/files/v4/loaders/c53989dbfca7cf13ed1f68ab6d1004d3.lua"},
     [8959257868] = { "Unscathed", "https://api.luarmor.net/files/v4/loaders/a6e61ca4414fe2b647decfd15ba78b8e.lua"},
-    [10563114921] = { "Steal an Egg", "https://api.luarmor.net/files/v4/loaders/7fb1c81c3290b809288aaf7dd506d623.lua"},
+    [10563114921] = { "Steal an Egg", "https://raw.githubusercontent.com/vxsszz/dasdawdasd/refs/heads/main/loadertest.lua.lua"},
     [8946565814] = { "Anime Origins", "https://api.luarmor.net/files/v4/loaders/05896c9352e9012134fc50b5b9db861b.lua"},
 }
 local route = routes[game.PlaceId] or routes[game.GameId]
