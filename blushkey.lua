@@ -1,25 +1,8 @@
 --[[
-    blushkey.  -  key system prompt in the blush. look
-    open source  |  standalone (does not need blush.lua)  |  v1.0.0
+-- vxq
 
-    local KeySystem = loadstring(game:HttpGet("<raw url>/blushkey.lua"))()
-    KeySystem:Prompt({
-        Title = "blush.", Subtitle = "key system",
-        Discord = "https://discord.gg/bigfroot",          -- Get key copies this
-        Premium = "https://vxq.mysellauth.com",           -- Buy premium copies this
-        Key = KeySystem:ReadSavedKey("blush/key.txt"),    -- prefill
-        OnSubmit = function(key, setStatus)              -- return true (valid) or false, "reason"
-            local status, message = KeySystem:LuarmorCheck("<script id>", key)
-            return status ~= false, message
-        end,
-        OnSuccess = function(key)                        -- runs after the valid animation
-            KeySystem:SaveKey("blush/key.txt", key)
-            -- loadstring(game:HttpGet("<your protected loader>"))()
-        end,
-    })
+feel free to use
 
-    same rules as blush.: no 1px outlines at rest, native UIShadow drop shadow, Roboto,
-    black + pale pink, everything animated, thread identity 8 on every callback.
 ]]
 
 local SharedEnv = (type(getgenv) == "function" and getgenv()) or _G
