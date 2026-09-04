@@ -1,8 +1,6 @@
 --[[
--- vxq
-
 feel free to use
-
+-@vxq
 ]]
 
 local SharedEnv = (type(getgenv) == "function" and getgenv()) or _G
@@ -34,8 +32,11 @@ Cap()
 local HasFS = type(isfile) == "function" and type(writefile) == "function" and type(readfile) == "function"
 
 -- unload the previous instance so re-running is a clean reload
-if SharedEnv.blushkey and type(SharedEnv.blushkey.Unload) == "function" then
-    pcall(SharedEnv.blushkey.Unload, SharedEnv.blushkey)
+for _, Name in { "BigFrootKeySystem", "blushkey" } do
+    local Previous = SharedEnv[Name]
+    if type(Previous) == "table" and type(Previous.Unload) == "function" then
+        pcall(Previous.Unload, Previous)
+    end
 end
 
 local KeySystem = {
@@ -43,14 +44,14 @@ local KeySystem = {
     Font = "rbxasset://fonts/families/Roboto.json",
     FontSize = 13,
     Theme = {
-        Background = Color3.fromRGB(10, 10, 11),
-        Panel      = Color3.fromRGB(16, 16, 18),
-        Element    = Color3.fromRGB(25, 25, 28),
-        Hover      = Color3.fromRGB(34, 34, 38),
-        Outline    = Color3.fromRGB(36, 36, 40),
-        Accent     = Color3.fromRGB(240, 166, 196),
-        Text       = Color3.fromRGB(242, 238, 240),
-        DimText    = Color3.fromRGB(138, 134, 138),
+        Background = Color3.fromRGB(14, 11, 10),
+        Panel      = Color3.fromRGB(21, 17, 16),
+        Element    = Color3.fromRGB(31, 25, 23),
+        Hover      = Color3.fromRGB(41, 33, 30),
+        Outline    = Color3.fromRGB(51, 41, 38),
+        Accent     = Color3.fromRGB(255, 122, 48),
+        Text       = Color3.fromRGB(242, 236, 232),
+        DimText    = Color3.fromRGB(150, 138, 132),
         Risky      = Color3.fromRGB(255, 86, 86),
         Success    = Color3.fromRGB(130, 220, 160),
     },
@@ -349,7 +350,7 @@ function KeySystem:Prompt(Options)
     local Title = self:Create("TextLabel", {
         Size = UDim2.new(1, 0, 0, 20),
         BackgroundTransparency = 1,
-        Text = Options.Title or "blush.",
+        Text = Options.Title or "BigFroot",
         TextSize = 17,
         Weight = "Bold",
         TextXAlignment = Enum.TextXAlignment.Left,
@@ -425,7 +426,7 @@ function KeySystem:Prompt(Options)
         end
     end)
 
-    -- primary: check key (accent, dark text, like the confirm button in blush. prompts)
+    -- primary: check key (accent, dark text, like the confirm button in the hub UI)
     local Submit = self:Create("TextButton", {
         Size = UDim2.new(1, 0, 0, 32),
         BackgroundColor3 = Theme.Accent,
@@ -676,5 +677,6 @@ function KeySystem:Unload()
     end
 end
 
+SharedEnv.BigFrootKeySystem = KeySystem
 SharedEnv.blushkey = KeySystem
 return KeySystem
