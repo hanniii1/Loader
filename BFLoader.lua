@@ -97,6 +97,7 @@ local routes = {
     [10769384180] = {"Fake Egg", "https://api.luarmor.net/files/v4/loaders/d2939642b2041ccca3c9c9056d69417f.lua"},
     [3183403065] = {"AA", "https://api.luarmor.net/files/v4/loaders/b503ab11b90eec7f0e471bc41de33a46.lua"},
     [6739698191] = {"VD", "https://api.luarmor.net/files/v4/loaders/31abdbb4934675ecaed51c8e72a47c67.lua"},
+    [10766972131] = {"ThrowF", "https://api.luarmor.net/files/v4/loaders/9e519b4fdac71e6a33fbab8b511edc21.lua"},
 }
 local route = routes[game.PlaceId] or routes[game.GameId]
 if not route then
